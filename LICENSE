@@ -19,3 +19,43 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Gratitude OS v0.1 Licensing Notice
+
+Copyright (c) 2026 Shidenkai Alpha
+
+This repository uses a dual-license structure.
+
+1. Documentation and Specification License
+
+The following files and directories are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0):
+
+- README.md
+- gratitude-os-v0.1.yaml
+- docs/
+
+You are free to share, adapt, and build upon these materials for any purpose, including commercial use, provided that appropriate attribution is given.
+
+Suggested attribution:
+
+"Gratitude OS v0.1 by Shidenkai Alpha / Kazene"
+
+2. Code, Schema, Examples, and Workflow License
+
+The following files and directories are licensed under the MIT License:
+
+- schema/
+- examples/
+- .github/workflows/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of these files and associated documentation files, to deal in the files without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the files, and to permit persons to whom the files are furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the files.
+
+THE FILES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE FILES OR THE USE OR OTHER DEALINGS IN THE FILES.
+
+3. No Monetary or Legal Claim Created
+
+This license does not grant, create, or imply any monetary right, royalty claim, legal entitlement, ownership claim, or payment obligation under Gratitude OS.
+
+Gratitude OS v0.1 is a non-monetary acknowledgment protocol.
