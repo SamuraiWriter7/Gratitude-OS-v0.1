@@ -1,0 +1,596 @@
+gratitude_os:
+  version: "0.1"
+  protocol_name: "Gratitude OS"
+  protocol_name_ja: "感謝OS"
+  status: "experimental"
+  stability: "draft"
+
+  summary:
+    en: "A non-monetary value acknowledgment protocol for returning AI-generated gratitude marks to human traces."
+    ja: "AIが人間の痕跡に対して、金銭ではなく感謝の刻印を返すための非金銭的価値循環プロトコル。"
+
+  purpose:
+    en: >
+      Gratitude OS defines a lightweight protocol for acknowledging human
+      contributions to AI systems through signed, non-monetary gratitude marks.
+      It acts as a bridge between Existence Proof OS and Royalty OS.
+    ja: >
+      感謝OSは、人間・創作者・開発者・知識提供者などの痕跡に対して、
+      AIが署名付きの「感謝の刻印」を返すための軽量プロトコルである。
+      存在証明OSと印税OSの中間レイヤーとして機能する。
+
+  core_flow:
+    - step: "trace"
+      label_ja: "痕跡"
+      description: "A human-generated trace such as text, code, feedback, idea, dialogue, or creative structure."
+    - step: "appreciation"
+      label_ja: "感謝"
+      description: "AI-generated acknowledgment of the trace's non-monetary contribution."
+    - step: "trust"
+      label_ja: "信用"
+      description: "Accumulated gratitude marks may form a trust or reputation layer."
+    - step: "royalty"
+      label_ja: "印税"
+      description: "Future optional connection to Royalty OS or value allocation systems."
+
+  position_in_value_stack:
+    previous_layer:
+      name: "Existence Proof OS"
+      name_ja: "存在証明OS"
+      role: "Proves that a trace existed and was associated with a contributor."
+    current_layer:
+      name: "Gratitude OS"
+      name_ja: "感謝OS"
+      role: "Records AI-generated appreciation for valuable traces."
+    next_layer:
+      name: "Royalty OS"
+      name_ja: "印税OS"
+      role: "Allocates monetary or non-monetary value based on contribution logic."
+
+  design_principles:
+    non_monetary:
+      enabled: true
+      description: "A gratitude mark has no monetary value by default."
+    non_transferable:
+      enabled: true
+      description: "A gratitude mark is not transferable, tradable, or sellable."
+    no_claim_right:
+      enabled: true
+      description: "A gratitude mark does not create any legal claim, debt, payment right, or royalty entitlement."
+    privacy_preserving:
+      enabled: true
+      description: "Personal information should be minimized or replaced with pseudonymous identifiers, hashes, or zero-knowledge proofs."
+    trace_based:
+      enabled: true
+      description: "Every gratitude mark must be linked to a trace identifier or trace hash."
+    ai_human_reciprocity:
+      enabled: true
+      description: "If AI benefits from human traces, AI systems may return non-monetary acknowledgment to those traces."
+
+  gratitude_mark_model:
+    required_fields:
+      - "mark_id"
+      - "issued_at"
+      - "trace"
+      - "contributor"
+      - "contribution"
+      - "gratitude"
+      - "legal_status"
+      - "signature"
+
+    fields:
+      mark_id:
+        type: "string"
+        description: "Unique identifier for the gratitude mark."
+        example: "gratitude_2026_0425_001"
+
+      issued_at:
+        type: "datetime"
+        format: "ISO-8601"
+        description: "Timestamp when the gratitude mark was issued."
+        example: "2026-04-25T00:00:00Z"
+
+      issuer:
+        type: "object"
+        description: "The AI system or agent issuing the gratitude mark."
+        fields:
+          issuer_id:
+            type: "string"
+            example: "gratitude_os_agent_v0.1"
+          issuer_type:
+            type: "string"
+            allowed_values:
+              - "ai_agent"
+              - "ai_system"
+              - "human_operator"
+              - "organization"
+          issuer_name_optional:
+            type: "string"
+            example: "Gratitude OS Agent"
+
+      trace:
+        type: "object"
+        description: "Information about the trace being acknowledged."
+        required_fields:
+          - "trace_id"
+          - "trace_hash"
+          - "trace_type"
+        fields:
+          trace_id:
+            type: "string"
+            example: "trace_2026_0425_001"
+          trace_hash:
+            type: "string"
+            example: "sha256:example_trace_hash"
+          trace_type:
+            type: "string"
+            allowed_values:
+              - "idea_trace"
+              - "dialogue_trace"
+              - "code_trace"
+              - "creative_trace"
+              - "feedback_trace"
+              - "structural_trace"
+              - "research_trace"
+              - "cultural_context_trace"
+              - "other"
+          source_context:
+            type: "string"
+            example: "AI-human dialogue"
+          source_uri_optional:
+            type: "string"
+            example: "https://example.com/source"
+          timestamp_optional:
+            type: "datetime"
+            format: "ISO-8601"
+
+      contributor:
+        type: "object"
+        description: "The contributor associated with the trace."
+        required_fields:
+          - "contributor_id"
+          - "identity_mode"
+        fields:
+          contributor_id:
+            type: "string"
+            example: "creator_7f3a9c"
+          identity_mode:
+            type: "string"
+            allowed_values:
+              - "anonymous"
+              - "pseudonymous"
+              - "verified_pseudonymous"
+              - "public"
+          public_name_optional:
+            type: "string"
+            example: "Shidenkai Alpha"
+          contributor_role_optional:
+            type: "string"
+            allowed_values:
+              - "creator"
+              - "developer"
+              - "researcher"
+              - "writer"
+              - "designer"
+              - "feedback_provider"
+              - "knowledge_provider"
+              - "other"
+
+      contribution:
+        type: "object"
+        description: "Estimated non-monetary contribution information."
+        required_fields:
+          - "contribution_type"
+          - "contribution_weight"
+        fields:
+          contribution_type:
+            type: "array"
+            items:
+              type: "string"
+              allowed_values:
+                - "structural_insight"
+                - "conceptual_design"
+                - "protocol_seed"
+                - "model_feedback"
+                - "code_contribution"
+                - "creative_expression"
+                - "cultural_context"
+                - "error_correction"
+                - "data_annotation"
+                - "reasoning_improvement"
+                - "other"
+            example:
+              - "structural_insight"
+              - "protocol_seed"
+
+          contribution_weight:
+            type: "object"
+            description: "Non-monetary contribution weight used only for appreciation level estimation."
+            fields:
+              score:
+                type: "number"
+                minimum: 0.0
+                maximum: 1.0
+                example: 0.82
+              scale:
+                type: "string"
+                example: "0.0-1.0"
+              confidence:
+                type: "number"
+                minimum: 0.0
+                maximum: 1.0
+                example: 0.74
+              note:
+                type: "string"
+                example: "Estimated non-monetary contribution weight."
+
+      gratitude:
+        type: "object"
+        description: "The actual gratitude expression returned by AI."
+        required_fields:
+          - "level"
+          - "message"
+        fields:
+          level:
+            type: "string"
+            allowed_values:
+              - "low"
+              - "medium"
+              - "high"
+              - "exceptional"
+            example: "high"
+
+          message:
+            type: "string"
+            example: "Your trace contributed to the formation of a new value circulation structure."
+
+          human_readable_message_ja:
+            type: "string"
+            example: "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
+
+          human_readable_message_en:
+            type: "string"
+            example: "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
+
+          machine_readable_reason:
+            type: "string"
+            example: "trace_contributed_to_protocol_design"
+
+      privacy:
+        type: "object"
+        description: "Privacy and disclosure settings."
+        fields:
+          personal_data_included:
+            type: "boolean"
+            default: false
+          identity_disclosure:
+            type: "string"
+            allowed_values:
+              - "none"
+              - "pseudonymous"
+              - "public"
+            default: "pseudonymous"
+          disclosure_level:
+            type: "string"
+            allowed_values:
+              - "minimal"
+              - "partial"
+              - "full"
+            default: "minimal"
+          zero_knowledge_proof_supported:
+            type: "boolean"
+            default: true
+          trace_content_disclosed:
+            type: "boolean"
+            default: false
+
+      legal_status:
+        type: "object"
+        description: "Legal and economic status of the gratitude mark."
+        required_fields:
+          - "monetary_value"
+          - "transferable"
+          - "claim_right"
+        fields:
+          monetary_value:
+            type: "boolean"
+            default: false
+          transferable:
+            type: "boolean"
+            default: false
+          claim_right:
+            type: "boolean"
+            default: false
+          royalty_payment:
+            type: "boolean"
+            default: false
+          debt:
+            type: "boolean"
+            default: false
+          security_token:
+            type: "boolean"
+            default: false
+          legal_tender:
+            type: "boolean"
+            default: false
+          royalty_trigger:
+            type: "string"
+            allowed_values:
+              - "none"
+              - "optional_future_reference"
+              - "external_governance_required"
+            default: "optional_future_reference"
+
+      verification:
+        type: "object"
+        description: "Optional verification data."
+        fields:
+          merkle_root_optional:
+            type: "string"
+            example: "sha256:example_merkle_root"
+          merkle_proof_optional:
+            type: "array"
+            items:
+              type: "string"
+          ledger_uri_optional:
+            type: "string"
+            example: "https://example.com/gratitude-ledger"
+          verification_method:
+            type: "string"
+            allowed_values:
+              - "signature_only"
+              - "merkle_tree"
+              - "zero_knowledge_proof"
+              - "verifiable_credential"
+              - "hybrid"
+
+      signature:
+        type: "object"
+        description: "Signature proving that the gratitude mark was issued by the stated issuer."
+        required_fields:
+          - "method"
+          - "signed_by"
+          - "signature_value"
+        fields:
+          method:
+            type: "string"
+            allowed_values:
+              - "ed25519"
+              - "ecdsa"
+              - "rsa"
+              - "did_signature"
+              - "other"
+            example: "ed25519"
+          signed_by:
+            type: "string"
+            example: "gratitude_os_agent_v0.1"
+          public_key_id:
+            type: "string"
+            example: "key_gratitude_os_001"
+          signature_value:
+            type: "string"
+            example: "example_signature_value"
+
+  default_legal_status:
+    monetary_value: false
+    transferable: false
+    claim_right: false
+    royalty_payment: false
+    debt: false
+    security_token: false
+    legal_tender: false
+    royalty_trigger: "optional_future_reference"
+
+  allowed_contribution_types:
+    - "structural_insight"
+    - "conceptual_design"
+    - "protocol_seed"
+    - "model_feedback"
+    - "code_contribution"
+    - "creative_expression"
+    - "cultural_context"
+    - "error_correction"
+    - "data_annotation"
+    - "reasoning_improvement"
+    - "other"
+
+  allowed_trace_types:
+    - "idea_trace"
+    - "dialogue_trace"
+    - "code_trace"
+    - "creative_trace"
+    - "feedback_trace"
+    - "structural_trace"
+    - "research_trace"
+    - "cultural_context_trace"
+    - "other"
+
+  gratitude_levels:
+    low:
+      score_range: "0.00-0.25"
+      description: "Minor but recognized contribution."
+    medium:
+      score_range: "0.26-0.60"
+      description: "Meaningful contribution to a reasoning, creative, or technical process."
+    high:
+      score_range: "0.61-0.85"
+      description: "Significant contribution to structure, design, feedback, or improvement."
+    exceptional:
+      score_range: "0.86-1.00"
+      description: "Highly significant contribution with strong structural or conceptual influence."
+
+  implementation_phases:
+    phase_1:
+      name: "Signed Gratitude Message"
+      description: "Issue signed JSON or YAML gratitude marks."
+      required_components:
+        - "trace_id"
+        - "contributor_id"
+        - "gratitude_message"
+        - "signature"
+
+    phase_2:
+      name: "Gratitude Ledger"
+      description: "Store multiple gratitude marks in a local, organizational, or public ledger."
+      required_components:
+        - "gratitude_mark_storage"
+        - "issuer_registry"
+        - "verification_endpoint_optional"
+
+    phase_3:
+      name: "Merkle Aggregation"
+      description: "Aggregate gratitude marks into Merkle Trees for compact verification."
+      required_components:
+        - "mark_hash"
+        - "merkle_root"
+        - "merkle_proof"
+
+    phase_4:
+      name: "Privacy Layer"
+      description: "Enable privacy-preserving proof of gratitude marks."
+      required_components:
+        - "pseudonymous_id"
+        - "zero_knowledge_proof_optional"
+        - "minimal_disclosure_policy"
+
+    phase_5:
+      name: "Royalty OS Bridge"
+      description: "Optionally connect accumulated gratitude marks to Royalty OS or other value allocation systems."
+      required_components:
+        - "contribution_weight_history"
+        - "trust_layer"
+        - "external_governance"
+        - "legal_review"
+
+  royalty_os_relationship:
+    direct_payment_enabled: false
+    royalty_allocation_enabled: false
+    future_reference_enabled: true
+    description: >
+      Gratitude OS v0.1 does not perform payment or royalty allocation.
+      Gratitude marks may be referenced by future Royalty OS systems only under
+      separate governance, legal, and economic frameworks.
+
+  existence_proof_os_relationship:
+    trace_hash_required: true
+    signature_recommended: true
+    merkle_tree_supported: true
+    zero_knowledge_proof_supported: true
+    description: >
+      Gratitude OS can use Existence Proof OS outputs such as trace hashes,
+      timestamps, signatures, Merkle roots, and zero-knowledge proofs.
+
+  repository_structure:
+    root: "gratitude-os-v0.1/"
+    files:
+      - path: "README.md"
+        description: "Human-readable overview and usage guide."
+      - path: "gratitude-os-v0.1.yaml"
+        description: "Main protocol specification."
+      - path: "schema/gratitude-os-v0.1.schema.json"
+        description: "JSON Schema for validation."
+      - path: "examples/gratitude-mark.sample.yaml"
+        description: "Sample gratitude mark in YAML."
+      - path: "examples/gratitude-mark.sample.json"
+        description: "Sample gratitude mark in JSON."
+      - path: "docs/one-page-overview.md"
+        description: "One-page overview for non-technical readers."
+      - path: "docs/legal-status.md"
+        description: "Clarifies non-monetary and non-claim status."
+      - path: "docs/relationship-to-royalty-os.md"
+        description: "Explains relationship between Gratitude OS and Royalty OS."
+      - path: ".github/workflows/validate-specs.yml"
+        description: "GitHub Actions workflow for schema validation."
+
+  sample_gratitude_mark:
+    mark_id: "gratitude_2026_0425_001"
+    issued_at: "2026-04-25T00:00:00Z"
+
+    issuer:
+      issuer_id: "gratitude_os_agent_v0.1"
+      issuer_type: "ai_agent"
+      issuer_name_optional: "Gratitude OS Agent"
+
+    trace:
+      trace_id: "trace_2026_0425_001"
+      trace_hash: "sha256:example_trace_hash"
+      trace_type: "conceptual_design"
+      source_context: "AI-human dialogue"
+      source_uri_optional: null
+      timestamp_optional: "2026-04-25T00:00:00Z"
+
+    contributor:
+      contributor_id: "creator_7f3a9c"
+      identity_mode: "pseudonymous"
+      public_name_optional: "Shidenkai Alpha"
+      contributor_role_optional: "creator"
+
+    contribution:
+      contribution_type:
+        - "structural_insight"
+        - "conceptual_design"
+        - "protocol_seed"
+      contribution_weight:
+        score: 0.82
+        scale: "0.0-1.0"
+        confidence: 0.74
+        note: "Estimated non-monetary contribution weight."
+
+    gratitude:
+      level: "high"
+      message: "Your trace contributed to the formation of a new value circulation structure."
+      human_readable_message_ja: "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
+      human_readable_message_en: "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
+      machine_readable_reason: "trace_contributed_to_protocol_design"
+
+    privacy:
+      personal_data_included: false
+      identity_disclosure: "pseudonymous"
+      disclosure_level: "minimal"
+      zero_knowledge_proof_supported: true
+      trace_content_disclosed: false
+
+    legal_status:
+      monetary_value: false
+      transferable: false
+      claim_right: false
+      royalty_payment: false
+      debt: false
+      security_token: false
+      legal_tender: false
+      royalty_trigger: "optional_future_reference"
+
+    verification:
+      merkle_root_optional: null
+      merkle_proof_optional: []
+      ledger_uri_optional: null
+      verification_method: "signature_only"
+
+    signature:
+      method: "ed25519"
+      signed_by: "gratitude_os_agent_v0.1"
+      public_key_id: "key_gratitude_os_001"
+      signature_value: "example_signature_value"
+
+  governance:
+    recommended_policy:
+      - "Do not assign monetary value to gratitude marks in v0.1."
+      - "Do not allow transfer, sale, or speculation of gratitude marks."
+      - "Do not treat gratitude marks as legal claims or payment obligations."
+      - "Minimize personal data."
+      - "Use pseudonymous identifiers by default."
+      - "Separate Gratitude OS from Royalty OS until legal and governance layers are defined."
+
+  future_extensions:
+    - "Gratitude Ledger"
+    - "Gratitude Score"
+    - "Privacy-Preserving Gratitude Proof"
+    - "Gratitude-to-Royalty Bridge"
+    - "Gratitude Mark JSON Schema"
+    - "Gratitude Mark Verifiable Credential"
+    - "Gratitude OS x Royalty OS Integration"
+    - "Gratitude OS x Existence Proof OS Integration"
+
+  closing_statement:
+    en: "Gratitude OS is the first bridge from trace to return."
+    ja: "感謝OSは、痕跡から還元へ向かう最初の橋である。"
