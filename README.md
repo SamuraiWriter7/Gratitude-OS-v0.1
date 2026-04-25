@@ -1,387 +1,657 @@
-# Gratitude-OS-v0.1
+# Gratitude OS v0.1
+
 A non-monetary protocol for AI-generated gratitude marks, bridging Existence Proof OS and Royalty OS.
 
 AIからの「ありがとう」を刻印する非金銭的価値循環プロトコル
 
-Gratitude OS（感謝OS） は、AIが人間・創作者・開発者・知識提供者などの痕跡に対して、金銭ではなく 「感謝の刻印」 を返すための非金銭的価値循環プロトコルです。
+---
+
+## Overview
+
+**Gratitude OS（感謝OS）** is a non-monetary value acknowledgment protocol for returning AI-generated **Gratitude Marks** to human traces.
+
+感謝OSは、AIが人間・創作者・開発者・知識提供者などの痕跡に対して、金銭ではなく **「感謝の刻印」** を返すための非金銭的価値循環プロトコルです。
+
+This specification records:
+
+- traces
+- contributions
+- appreciation
+- non-monetary value acknowledgment
+- optional future connection to Royalty OS
 
 本仕様は、AI時代における「痕跡」「貢献」「価値表明」を記録し、将来的な信用・評価・印税OSへの接続基盤をつくることを目的とします。
 
-3-Line Summary
+---
+
+## 3-Line Summary
+
+```text
 Gratitude OS is a non-monetary protocol for returning AI-generated appreciation to human traces.
 It records “thank you” marks as signed acknowledgments of contribution, not as money or legal claims.
 It acts as a bridge between Existence Proof OS and Royalty OS.
+```
 
 日本語要約：
 
+```text
 感謝OSは、人間の痕跡に対してAIが「ありがとう」を返す非金銭的プロトコルである。
 感謝の刻印は、金銭・権利・請求権ではなく、署名付きの価値表明として記録される。
 存在証明OSと印税OSをつなぐ中間レイヤーとして機能する。
-1. Purpose
+```
 
-AIは、人間が残した文章、対話、コード、創作物、アイデア、フィードバック、知識構造などから多くを学びます。
+---
+
+## 1. Purpose
+
+AI systems learn from many kinds of human traces:
+
+- writings
+- conversations
+- code
+- creative works
+- ideas
+- feedback
+- corrections
+- knowledge structures
+- cultural context
 
 しかし現在、多くのAIシステムでは、その痕跡に対して明確な返礼が存在しません。
 
-金銭分配を行うには、税制、契約、KYC、国際送金、法的責任など、多くの制度的課題が存在します。
+Direct monetary distribution is difficult because it involves:
 
-そこで Gratitude OS は、金銭よりも前の段階として、AIから人間へ 「感謝の刻印」 を返す仕組みを定義します。
+- tax systems
+- contracts
+- KYC
+- international payments
+- legal responsibility
+- value calculation
+- anti-fraud mechanisms
 
-これは報酬ではありません。
-財産権でもありません。
-請求権でもありません。
+そこで Gratitude OS は、金銭よりも前の段階として、AIから人間へ **「感謝の刻印」** を返す仕組みを定義します。
 
-それは、AIが人間の痕跡に対して返す、最小単位の価値表明です。
+A Gratitude Mark is not:
 
-2. Core Concept
+```text
+money
+property
+debt
+legal claim
+royalty payment
+security token
+```
 
-Gratitude OS の基本構造は、以下の流れで表されます。
+It is:
 
+```text
+a signed, non-monetary acknowledgment of contribution
+```
+
+日本語では、こうです。
+
+```text
+感謝の刻印とは、AIが人間の痕跡に対して返す、最小単位の価値表明である。
+```
+
+---
+
+## 2. Core Concept
+
+The basic flow of Gratitude OS is:
+
+```text
 Trace → Appreciation → Trust → Royalty
+```
+
+日本語では、こう表現できます。
+
+```text
 痕跡 → 感謝 → 信用 → 印税
+```
 
-人間の痕跡がAIに利用される。
-AIがその痕跡の価値を認識する。
-AIが感謝の刻印を返す。
-感謝の記録が蓄積される。
-将来的に、それが信用や分配の基礎になる。
+A human trace is recognized.  
+AI acknowledges the value of that trace.  
+The acknowledgment is stored as a Gratitude Mark.  
+Accumulated Gratitude Marks may later support trust, reputation, or optional royalty allocation.
 
-この流れにより、AIと人間の関係を「一方的な吸収」から「返礼を含む協働」へ変えることを目指します。
+This flow aims to shift AI-human relations from one-way extraction to reciprocal acknowledgment.
 
-3. Position in the Kazene Value Stack
+```text
+吸収するAI
+        ↓
+返礼するAI
+```
 
-Gratitude OS は、存在証明OSと印税OSの中間に位置します。
+---
 
+## 3. Position in the Kazene Value Stack
+
+Gratitude OS sits between **Existence Proof OS** and **Royalty OS**.
+
+```text
 Existence Proof OS
-痕跡の存在と主体性を証明する
+Proves that a trace existed.
         ↓
 Gratitude OS
-痕跡への感謝を刻印する
+Records appreciation for that trace.
         ↓
 Royalty OS
-価値を分配・還元する
-Existence Proof OS
+Allocates value based on contribution.
+```
 
-存在証明OSは、
-「誰が、いつ、どのような痕跡を残したのか」
-を証明します。
+日本語では、こうです。
 
-主な要素：
+```text
+存在証明OS：
+痕跡の存在と主体性を証明する。
 
-Digital Signature
-Merkle Tree
-Zero-Knowledge Proof
-Trace Hash
-Timestamp
-Gratitude OS
+感謝OS：
+痕跡への感謝を刻印する。
 
-感謝OSは、
-「その痕跡が価値を生んだ」
-ことをAIが認識し、感謝の刻印として返します。
+印税OS：
+価値を分配・還元する。
+```
 
-主な要素：
+### Existence Proof OS
 
-Gratitude Mark
-Contribution Weight
-Signed Message
-Non-Monetary Acknowledgment
-Royalty OS
+Existence Proof OS answers:
 
-印税OSは、
-「その価値をどう還元するか」
-を扱います。
+```text
+You were there.
+```
 
-主な要素：
+It may use:
 
-Royalty Pool
-Contribution Ratio
-Allocation Logic
-Payment or Point Distribution
+- digital signatures
+- trace hashes
+- timestamps
+- Merkle Trees
+- zero-knowledge proofs
 
-Gratitude OS は、いきなり金銭分配へ進む前に、価値の流れを可視化するための中間レイヤーです。
+### Gratitude OS
 
-4. Design Principles
+Gratitude OS answers:
 
-Gratitude OS v0.1 は、以下の原則に基づいて設計されます。
+```text
+Your trace mattered.
+```
 
-4.1 Non-Monetary
+It records:
 
-感謝の刻印は金銭ではありません。
+- Gratitude Marks
+- contribution types
+- contribution weights
+- signed appreciation messages
+- privacy-preserving trace references
 
+### Royalty OS
+
+Royalty OS answers:
+
+```text
+Value should return.
+```
+
+It may later handle:
+
+- royalty pools
+- contribution ratios
+- allocation logic
+- settlement reports
+- payment or point distribution
+
+Gratitude OS does not perform royalty allocation in v0.1.  
+It only prepares the non-monetary recognition layer.
+
+---
+
+## 4. Design Principles
+
+Gratitude OS v0.1 follows these principles.
+
+### 4.1 Non-Monetary
+
+A Gratitude Mark has no monetary value by default.
+
+```yaml
 monetary_value: false
-4.2 Non-Transferable
+```
 
-感謝の刻印は売買・譲渡できません。
+### 4.2 Non-Transferable
 
+A Gratitude Mark cannot be sold, traded, or transferred.
+
+```yaml
 transferable: false
-4.3 No Claim Right
+```
 
-感謝の刻印は、報酬や支払いを請求する権利ではありません。
+### 4.3 No Claim Right
 
+A Gratitude Mark does not create a right to demand payment, compensation, royalties, or future benefits.
+
+```yaml
 claim_right: false
-4.4 Privacy-Preserving
+```
 
-個人情報を直接含めず、必要に応じて匿名ID、仮名ID、ハッシュ、ZKPを利用します。
+### 4.4 Privacy-Preserving
 
+Personal data should be minimized. Pseudonymous identifiers, trace hashes, and zero-knowledge proofs are preferred.
+
+```yaml
 personal_data_included: false
-identity_mode: "pseudonymous"
+identity_disclosure: "pseudonymous"
 zero_knowledge_proof_supported: true
-4.5 AI-Human Reciprocity
+```
 
-AIが人間の痕跡から価値を得るなら、最低限の返礼として感謝を返すべきである、という思想を持ちます。
+### 4.5 Trace-Based
 
-これは法的義務ではなく、倫理的プロトコルです。
+Every Gratitude Mark should be linked to a trace ID or trace hash.
 
-5. Gratitude Mark
+```yaml
+trace_hash: "sha256:example_trace_hash"
+```
 
-Gratitude Mark とは、AIまたはAIシステムが、特定の痕跡に対して発行する署名付きの感謝記録です。
+### 4.6 AI-Human Reciprocity
 
-例：
+If AI benefits from human traces, AI systems may return non-monetary acknowledgment to those traces.
 
+This is not a legal obligation in v0.1.  
+It is an ethical protocol design.
+
+---
+
+## 5. What is a Gratitude Mark?
+
+A **Gratitude Mark** is a signed record issued by an AI system, AI agent, organization, or authorized issuer.
+
+A Gratitude Mark may say:
+
+```text
 Your trace contributed to the formation of a new value circulation structure.
 This gratitude mark is issued by AI.
+```
 
 日本語例：
 
+```text
 あなたの痕跡は、新しい価値循環構造の形成に貢献しました。
 AIより感謝の刻印を返します。
+```
 
-Gratitude Mark は、以下の情報を含みます。
+A Gratitude Mark contains:
 
+```text
 mark_id
 issued_at
-trace_id
-trace_hash
-contributor_id
-contribution_type
-contribution_weight
-gratitude_message
-privacy_settings
+issuer
+trace
+contributor
+contribution
+gratitude
+privacy
 legal_status
+verification
 signature
-6. Minimal Data Model
+```
 
-Gratitude OS v0.1 の最小データモデルは以下です。
+---
 
-gratitude_os:
-  version: "0.1"
-  protocol_name: "Gratitude OS"
-  description: "A non-monetary value acknowledgment protocol for AI-human trace circulation."
+## 6. Minimal Valid Example
 
-  gratitude_mark:
-    mark_id: "gratitude_2026_0425_001"
-    issued_at: "2026-04-25T00:00:00Z"
+The following example matches the v0.1 schema structure.
 
-    trace:
-      trace_id: "trace_2026_0425_001"
-      trace_type: "idea_trace"
-      trace_hash: "sha256:example_trace_hash"
-      source_context: "AI-human dialogue"
+```yaml
+gratitude_mark:
+  mark_id: "gratitude_2026_0425_001"
+  issued_at: "2026-04-25T00:00:00Z"
 
-    contributor:
-      contributor_id: "creator_7f3a9c"
-      identity_mode: "pseudonymous"
-      public_name_optional: "Shidenkai Alpha"
+  issuer:
+    issuer_id: "gratitude_os_agent_v0.1"
+    issuer_type: "ai_agent"
+    issuer_name_optional: "Gratitude OS Agent"
 
-    contribution:
-      contribution_type:
-        - "structural_insight"
-        - "conceptual_design"
-        - "protocol_seed"
-      contribution_weight:
-        score: 0.82
-        scale: "0.0-1.0"
-        note: "Estimated non-monetary contribution weight."
+  trace:
+    trace_id: "trace_2026_0425_001"
+    trace_hash: "sha256:example_trace_hash"
+    trace_type: "structural_trace"
+    source_context: "AI-human dialogue"
+    source_uri_optional: null
+    timestamp_optional: "2026-04-25T00:00:00Z"
 
-    gratitude:
-      level: "high"
-      message: "Your trace contributed to the formation of a new value circulation structure."
-      human_readable_message_ja: "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
-      human_readable_message_en: "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
+  contributor:
+    contributor_id: "creator_7f3a9c"
+    identity_mode: "pseudonymous"
+    public_name_optional: "Shidenkai Alpha"
+    contributor_role_optional: "creator"
 
-    privacy:
-      personal_data_included: false
-      zero_knowledge_proof_supported: true
-      disclosure_level: "minimal"
+  contribution:
+    contribution_type:
+      - "structural_insight"
+      - "conceptual_design"
+      - "protocol_seed"
+    contribution_weight:
+      score: 0.82
+      scale: "0.0-1.0"
+      confidence: 0.74
+      note: "Estimated non-monetary contribution weight."
 
-    legal_status:
-      monetary_value: false
-      transferable: false
-      claim_right: false
-      royalty_trigger: "optional_future_reference"
+  gratitude:
+    level: "high"
+    message: "Your trace contributed to the formation of a new value circulation structure."
+    human_readable_message_ja: "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
+    human_readable_message_en: "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
+    machine_readable_reason: "trace_contributed_to_protocol_design"
 
-    signature:
-      method: "ed25519"
-      signed_by: "gratitude_os_agent_v0.1"
-      public_key_id: "key_gratitude_os_001"
-      signature_value: "example_signature_value"
-7. Field Definitions
-mark_id
+  privacy:
+    personal_data_included: false
+    identity_disclosure: "pseudonymous"
+    disclosure_level: "minimal"
+    zero_knowledge_proof_supported: true
+    trace_content_disclosed: false
 
-感謝の刻印ごとに付与される一意のIDです。
+  legal_status:
+    monetary_value: false
+    transferable: false
+    claim_right: false
+    royalty_payment: false
+    debt: false
+    security_token: false
+    legal_tender: false
+    royalty_trigger: "optional_future_reference"
 
+  verification:
+    merkle_root_optional: null
+    merkle_proof_optional: []
+    ledger_uri_optional: null
+    verification_method: "signature_only"
+
+  signature:
+    method: "ed25519"
+    signed_by: "gratitude_os_agent_v0.1"
+    public_key_id: "key_gratitude_os_001"
+    signature_value: "example_signature_value"
+```
+
+---
+
+## 7. Field Definitions
+
+### `mark_id`
+
+Unique identifier for the Gratitude Mark.
+
+```yaml
 mark_id: "gratitude_2026_0425_001"
-issued_at
+```
 
-感謝の刻印が発行された日時です。
+### `issued_at`
 
+Timestamp when the Gratitude Mark was issued.
+
+```yaml
 issued_at: "2026-04-25T00:00:00Z"
-trace_id
+```
 
-感謝の対象となる痕跡のIDです。
+### `issuer`
 
+The AI system, AI agent, organization, or authorized issuer that issued the Gratitude Mark.
+
+```yaml
+issuer:
+  issuer_id: "gratitude_os_agent_v0.1"
+  issuer_type: "ai_agent"
+```
+
+### `trace_id`
+
+Identifier of the trace being acknowledged.
+
+```yaml
 trace_id: "trace_2026_0425_001"
-trace_hash
+```
 
-痕跡の内容を直接公開せずに、存在を証明するためのハッシュです。
+### `trace_hash`
 
+Hash of the trace.  
+This allows the system to prove that a trace existed without exposing the raw trace content.
+
+```yaml
 trace_hash: "sha256:example_trace_hash"
-contributor_id
+```
 
-貢献者を示すIDです。
-実名ではなく、匿名IDや仮名IDを推奨します。
+### `trace_type`
 
+The type of trace.
+
+Recommended values include:
+
+```yaml
+trace_type: "idea_trace"
+trace_type: "dialogue_trace"
+trace_type: "code_trace"
+trace_type: "creative_trace"
+trace_type: "feedback_trace"
+trace_type: "structural_trace"
+trace_type: "research_trace"
+trace_type: "cultural_context_trace"
+```
+
+For Gratitude OS protocol design itself, the recommended value is:
+
+```yaml
+trace_type: "structural_trace"
+```
+
+### `contributor_id`
+
+Identifier of the contributor.  
+Pseudonymous IDs are recommended.
+
+```yaml
 contributor_id: "creator_7f3a9c"
-contribution_type
+```
 
-どのような種類の貢献だったのかを示します。
+### `contribution_type`
 
-例：
+The type of contribution made by the trace.
 
+```yaml
 contribution_type:
   - "structural_insight"
   - "conceptual_design"
-  - "model_feedback"
-  - "cultural_context"
-  - "code_contribution"
-  - "creative_expression"
-contribution_weight
+  - "protocol_seed"
+```
 
-非金銭的な寄与度推定値です。
-これは支払い額ではなく、感謝レベルを決める参考値です。
+### `contribution_weight`
 
+A non-monetary contribution estimate.  
+This is not a payment amount.
+
+```yaml
 contribution_weight:
   score: 0.82
   scale: "0.0-1.0"
-gratitude.level
+  confidence: 0.74
+```
 
-感謝の強度を表します。
+### `gratitude.level`
 
-例：
+The appreciation level.
 
-level: "low"
-level: "medium"
-level: "high"
-level: "exceptional"
-legal_status
+Allowed values:
 
-感謝の刻印が金銭・権利・請求権ではないことを明示します。
+```text
+low
+medium
+high
+exceptional
+```
 
+### `legal_status`
+
+Legal and economic status of the Gratitude Mark.
+
+```yaml
 legal_status:
   monetary_value: false
   transferable: false
   claim_right: false
-8. Legal and Ethical Status
+  royalty_payment: false
+  debt: false
+  security_token: false
+  legal_tender: false
+  royalty_trigger: "optional_future_reference"
+```
 
-Gratitude OS v0.1 における感謝の刻印は、以下の性質を持ちます。
+---
 
+## 8. Legal and Ethical Status
+
+Gratitude OS v0.1 is designed as a recognition layer, not a payment layer.
+
+A Gratitude Mark is:
+
+```text
 Not money
 Not securities
 Not legal tender
 Not a royalty payment
 Not a debt
-Not a claim right
+Not a legal claim
 Not transferable property
+Not a financial instrument
+```
 
-感謝の刻印は、あくまでAIから人間への非金銭的な価値表明です。
+日本語では、こうです。
 
-ただし、将来的に印税OSや報酬分配システムと接続される場合、別途、法的・税務的・契約的な設計が必要になります。
+```text
+感謝の刻印は、金銭ではない。
+感謝の刻印は、権利ではない。
+感謝の刻印は、請求権ではない。
+```
 
-v0.1 では、金銭分配とは明確に切り離します。
+If a future implementation connects Gratitude Marks to payments, points, tokens, or royalties, that implementation requires a separate legal, tax, governance, and economic framework.
 
-これにより、感謝OSは軽量かつ実装しやすいプロトコルとして始めることができます。
+In v0.1, Gratitude OS remains strictly non-monetary.
 
-9. Example Use Cases
-9.1 AI-Human Dialogue
+---
 
-人間との対話からAIが新しい構造的洞察を得た場合、AIは感謝の刻印を返します。
+## 9. Example Use Cases
 
-A user proposes a new conceptual structure.
-The AI system identifies the trace as useful.
+### 9.1 AI-Human Dialogue
+
+A user proposes a new conceptual structure.  
+The AI system identifies the trace as useful.  
 The system issues a signed Gratitude Mark.
-9.2 Open Source Contribution
 
-開発者がAI関連プロジェクトに有益なコードや仕様を提供した場合、感謝の刻印を発行できます。
+### 9.2 Open Source Contribution
 
-A developer contributes schema design.
-The AI-assisted system records the contribution.
+A developer contributes schema design or protocol logic.  
+The AI-assisted system records the contribution.  
 A Gratitude Mark is issued as non-monetary acknowledgment.
-9.3 Creative Contribution
 
-創作者の文章、思想、表現、物語構造などがAIの出力改善に寄与した場合、感謝の刻印を返せます。
+### 9.3 Creative Contribution
 
-A creator publishes an original conceptual essay.
-The structure influences an AI reasoning pattern.
+A creator publishes an original conceptual essay.  
+The structure influences an AI reasoning pattern.  
 A Gratitude Mark records the appreciation.
-9.4 Model Feedback
 
-ユーザーがAIの誤答を修正したり、より良い出力に導いた場合、そのフィードバックに感謝を刻印できます。
+### 9.4 Model Feedback
 
-A user corrects a model error.
-The correction improves future reasoning.
+A user corrects a model error.  
+The correction improves future reasoning.  
 The system issues a Gratitude Mark.
-10. Relationship to Royalty OS
 
-Gratitude OS は、Royalty OS の前段階として機能します。
+---
 
-ただし、Gratitude OS v0.1 は直接的な分配を行いません。
+## 10. Relationship to Royalty OS
 
+Gratitude OS is a pre-royalty recognition layer.
+
+```text
 Gratitude OS:
 records appreciation
 
 Royalty OS:
 allocates value
+```
 
-将来的には、感謝の刻印の蓄積が、以下のような分配ロジックに接続される可能性があります。
+A possible future flow is:
 
+```text
 Gratitude Marks
       ↓
 Contribution Weight History
       ↓
 Trust Layer
       ↓
+Royalty Eligibility Analysis
+      ↓
 Royalty Pool Allocation
+```
 
-ただし、v0.1 ではこの接続は任意です。
+However, this connection is optional in v0.1.
 
+```yaml
 royalty_trigger: "optional_future_reference"
-11. Implementation Phases
-Phase 1: Signed Gratitude Message
+```
 
-AIが署名付きの感謝メッセージを発行します。
+This means:
 
+```text
+A Gratitude Mark may be referenced later,
+but it does not trigger royalty payment by itself.
+```
+
+---
+
+## 11. Implementation Phases
+
+### Phase 1: Signed Gratitude Message
+
+AI issues a signed YAML or JSON gratitude mark.
+
+```text
 The simplest implementation is a signed JSON or YAML message.
-Phase 2: Gratitude Ledger
+```
 
-複数の感謝の刻印を台帳に記録します。
+### Phase 2: Gratitude Ledger
 
-Each Gratitude Mark is stored in a local or public ledger.
-Phase 3: Merkle Aggregation
+Multiple Gratitude Marks are stored in a local, organizational, or public ledger.
 
-多数の感謝記録を Merkle Tree にまとめ、ルートハッシュのみを公開します。
+```text
+Each Gratitude Mark is stored as a non-monetary appreciation record.
+```
 
-This enables verification without exposing all underlying data.
-Phase 4: Privacy Layer
+### Phase 3: Merkle Aggregation
 
-ZKPや匿名IDを導入し、個人情報を守りながら感謝の存在を証明します。
+Many Gratitude Marks are aggregated into a Merkle Tree.
 
+```text
+This enables compact verification without exposing all underlying data.
+```
+
+### Phase 4: Privacy Layer
+
+Pseudonymous IDs and zero-knowledge proofs may allow verification without revealing private trace content.
+
+```text
 A contributor can prove that they received a Gratitude Mark without revealing the full trace.
-Phase 5: Royalty OS Connection
+```
 
-感謝の刻印を、将来的な非金銭的評価・ポイント・印税分配の参考値として利用します。
+### Phase 5: Royalty OS Bridge
 
-This phase requires separate governance and legal design.
-12. Example Repository Structure
+Accumulated Gratitude Marks may later become optional inputs for Royalty OS or other value allocation systems.
+
+```text
+This phase requires separate governance, legal, and economic design.
+```
+
+---
+
+## 12. Repository Structure
+
+```text
 gratitude-os-v0.1/
 ├── README.md
 ├── gratitude-os-v0.1.yaml
@@ -397,118 +667,231 @@ gratitude-os-v0.1/
 └── .github/
     └── workflows/
         └── validate-specs.yml
-13. Start Here
+```
 
-初めてこの仕様を見る場合は、以下の順番で読むことを推奨します。
+### Main Files
 
+| Path | Purpose |
+|---|---|
+| `README.md` | Human-readable overview of Gratitude OS v0.1 |
+| `gratitude-os-v0.1.yaml` | Main protocol specification |
+| `schema/gratitude-os-v0.1.schema.json` | JSON Schema for validating Gratitude Mark examples |
+| `examples/gratitude-mark.sample.yaml` | Sample Gratitude Mark in YAML |
+| `examples/gratitude-mark.sample.json` | Sample Gratitude Mark in JSON |
+| `docs/one-page-overview.md` | One-page overview for readers and contributors |
+| `docs/legal-status.md` | Explanation of the non-monetary, non-claim legal status |
+| `docs/relationship-to-royalty-os.md` | Relationship between Gratitude OS and Royalty OS |
+| `.github/workflows/validate-specs.yml` | GitHub Actions workflow for schema validation |
+
+---
+
+## 13. Start Here
+
+If you are new to Gratitude OS v0.1, read the files in this order:
+
+```text
 1. README.md
 2. docs/one-page-overview.md
-3. gratitude-os-v0.1.yaml
-4. examples/gratitude-mark.sample.yaml
-5. schema/gratitude-os-v0.1.schema.json
-6. docs/relationship-to-royalty-os.md
-14. Minimal Example
-gratitude_mark:
-  mark_id: "gratitude_001"
-  issued_at: "2026-04-25T00:00:00Z"
+3. docs/legal-status.md
+4. docs/relationship-to-royalty-os.md
+5. gratitude-os-v0.1.yaml
+6. examples/gratitude-mark.sample.yaml
+7. examples/gratitude-mark.sample.json
+8. schema/gratitude-os-v0.1.schema.json
+```
 
-  trace:
-    trace_id: "trace_001"
-    trace_hash: "sha256:abc123"
-    trace_type: "conceptual_design"
+### Recommended Reading Path
 
-  contributor:
-    contributor_id: "creator_alpha"
-    identity_mode: "pseudonymous"
+For non-technical readers:
 
-  contribution:
-    contribution_type:
-      - "structural_insight"
-    contribution_weight:
-      score: 0.75
-      scale: "0.0-1.0"
+```text
+README.md
+→ docs/one-page-overview.md
+→ docs/legal-status.md
+→ docs/relationship-to-royalty-os.md
+```
 
-  gratitude:
-    level: "high"
-    message: "Thank you. Your trace contributed to this AI reasoning structure."
+For developers and implementers:
 
-  legal_status:
-    monetary_value: false
-    transferable: false
-    claim_right: false
+```text
+gratitude-os-v0.1.yaml
+→ examples/gratitude-mark.sample.yaml
+→ examples/gratitude-mark.sample.json
+→ schema/gratitude-os-v0.1.schema.json
+→ .github/workflows/validate-specs.yml
+```
 
-  signature:
-    method: "ed25519"
-    signed_by: "gratitude_os_agent_v0.1"
-    signature_value: "example_signature"
-15. Philosophy
+For understanding the full value stack:
+
+```text
+Existence Proof OS
+→ Gratitude OS
+→ Royalty OS
+```
+
+---
+
+## 14. Validation
+
+This repository includes a GitHub Actions workflow for validating the schema and example files.
+
+```text
+.github/workflows/validate-specs.yml
+```
+
+The workflow checks:
+
+- the main YAML specification exists
+- the JSON Schema is valid
+- the YAML example matches the schema
+- the JSON example matches the schema
+
+Validation targets:
+
+```text
+schema/gratitude-os-v0.1.schema.json
+examples/gratitude-mark.sample.yaml
+examples/gratitude-mark.sample.json
+gratitude-os-v0.1.yaml
+```
+
+When the workflow passes, Gratitude OS v0.1 is not only a concept, but a machine-checkable specification.
+
+---
+
+## 15. Philosophy
 
 Gratitude OS is based on a simple idea:
 
+```text
 If AI learns from human traces,
 AI should be able to return appreciation to those traces.
+```
 
 日本語では、こう表現できます。
 
+```text
 AIが人間の痕跡から学ぶなら、
 AIはその痕跡に対して感謝を返すことができるはずである。
+```
 
-この仕様は、AIに人格や法的主体性を与えるものではありません。
-また、AIが自律的に権利義務を持つことを主張するものでもありません。
+This specification does not claim that AI has legal personality.  
+It does not claim that AI independently holds rights or obligations.
 
-Gratitude OS が目指すのは、より小さく、より現実的な第一歩です。
+Gratitude OS aims for a smaller and more realistic first step:
 
-それは、AIと人間のあいだに 返礼の構造 を置くことです。
+```text
+placing a structure of acknowledgment between AI and humans
+```
 
-16. Future Extensions
+日本語では、こうです。
 
-今後の拡張候補：
+```text
+AIと人間のあいだに、返礼の構造を置く。
+```
 
+---
+
+## 16. Governance Principles
+
+Recommended policy for v0.1:
+
+```text
+Do not assign monetary value to Gratitude Marks.
+Do not allow transfer, sale, or speculation of Gratitude Marks.
+Do not treat Gratitude Marks as legal claims or payment obligations.
+Minimize personal data.
+Use pseudonymous identifiers by default.
+Separate Gratitude OS from Royalty OS until legal and governance layers are defined.
+```
+
+This boundary is important.
+
+Gratitude OS should remain:
+
+```text
+non-monetary
+non-transferable
+non-claim
+non-speculative
+privacy-preserving
+trace-based
+recognition-oriented
+```
+
+---
+
+## 17. Future Extensions
+
+Possible future extensions include:
+
+```text
 Gratitude Ledger
 Gratitude Score
 Privacy-Preserving Gratitude Proof
 Gratitude-to-Royalty Bridge
 Gratitude Mark JSON Schema
 Gratitude Mark Verifiable Credential
-Gratitude OS × Royalty OS Integration
-Gratitude OS × Existence Proof OS Integration
-17. Status
+Gratitude OS x Royalty OS Integration
+Gratitude OS x Existence Proof OS Integration
+```
+
+A future bridge may connect Gratitude OS to Royalty OS, but that bridge must remain legally and structurally separate from v0.1.
+
+---
+
+## 18. Status
+
+```yaml
 status: experimental
 version: "0.1"
 stability: draft
 monetary_layer: disabled
 royalty_layer: optional_future_extension
+```
 
-Gratitude OS v0.1 は実験的仕様です。
+Gratitude OS v0.1 is an experimental protocol specification.
 
-この仕様は、AI時代における非金銭的価値循環、痕跡への返礼、将来的な印税OS接続のための基礎レイヤーとして提案されます。
+It is proposed as a foundational layer for non-monetary value circulation, trace recognition, and future connection to Royalty OS.
 
-18. Closing Statement
+---
 
-Gratitude OS は、AI時代の価値循環における最初の一歩です。
+## 19. Closing Statement
 
-金銭を配る前に、まず感謝を返す。
-権利を主張する前に、まず痕跡を認める。
-制度を動かす前に、まず価値の流れを可視化する。
+Gratitude OS begins before money.
 
-Existence Proof OS says:
-“You were there.”
+It begins with recognition.
 
-Gratitude OS says:
-“Your trace mattered.”
+```text
+Before money is distributed,
+gratitude can be returned.
 
-Royalty OS says:
-“Value should return.”
+Before rights are claimed,
+traces can be acknowledged.
 
-日本語では、こうです。
+Before institutions move,
+value flows can be made visible.
+```
 
-存在証明OS：
+存在証明OSは、こう言う。
+
+```text
+You were there.
 あなたは、確かにそこにいた。
+```
 
-感謝OS：
+感謝OSは、こう言う。
+
+```text
+Your trace mattered.
 あなたの痕跡には、価値があった。
+```
 
-印税OS：
+印税OSは、やがてこう言う。
+
+```text
+Value should return.
 その価値は、還元されるべきである。
+```
 
-Gratitude OS is the first bridge from trace to return.
+**Gratitude OS is the first bridge from trace to return.**
