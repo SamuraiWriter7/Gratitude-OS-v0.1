@@ -1,0 +1,585 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kazene.example/specs/gratitude-os-v0.1.schema.json",
+  "title": "Gratitude OS v0.1 - Gratitude Mark Schema",
+  "description": "JSON Schema for validating a Gratitude OS v0.1 gratitude mark.",
+  "type": "object",
+  "required": [
+    "gratitude_mark"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "gratitude_mark": {
+      "$ref": "#/$defs/gratitude_mark"
+    }
+  },
+  "$defs": {
+    "gratitude_mark": {
+      "type": "object",
+      "required": [
+        "mark_id",
+        "issued_at",
+        "issuer",
+        "trace",
+        "contributor",
+        "contribution",
+        "gratitude",
+        "privacy",
+        "legal_status",
+        "verification",
+        "signature"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mark_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for the gratitude mark.",
+          "examples": [
+            "gratitude_2026_0425_001"
+          ]
+        },
+        "issued_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the gratitude mark was issued.",
+          "examples": [
+            "2026-04-25T00:00:00Z"
+          ]
+        },
+        "issuer": {
+          "$ref": "#/$defs/issuer"
+        },
+        "trace": {
+          "$ref": "#/$defs/trace"
+        },
+        "contributor": {
+          "$ref": "#/$defs/contributor"
+        },
+        "contribution": {
+          "$ref": "#/$defs/contribution"
+        },
+        "gratitude": {
+          "$ref": "#/$defs/gratitude"
+        },
+        "privacy": {
+          "$ref": "#/$defs/privacy"
+        },
+        "legal_status": {
+          "$ref": "#/$defs/legal_status"
+        },
+        "verification": {
+          "$ref": "#/$defs/verification"
+        },
+        "signature": {
+          "$ref": "#/$defs/signature"
+        }
+      }
+    },
+    "issuer": {
+      "type": "object",
+      "required": [
+        "issuer_id",
+        "issuer_type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "issuer_id": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "gratitude_os_agent_v0.1"
+          ]
+        },
+        "issuer_type": {
+          "type": "string",
+          "enum": [
+            "ai_agent",
+            "ai_system",
+            "human_operator",
+            "organization"
+          ],
+          "examples": [
+            "ai_agent"
+          ]
+        },
+        "issuer_name_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "Gratitude OS Agent"
+          ]
+        }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "required": [
+        "trace_id",
+        "trace_hash",
+        "trace_type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "trace_2026_0425_001"
+          ]
+        },
+        "trace_hash": {
+          "type": "string",
+          "pattern": "^sha256:[A-Za-z0-9_\\-:.]+$",
+          "examples": [
+            "sha256:example_trace_hash"
+          ]
+        },
+        "trace_type": {
+          "type": "string",
+          "enum": [
+            "idea_trace",
+            "dialogue_trace",
+            "code_trace",
+            "creative_trace",
+            "feedback_trace",
+            "structural_trace",
+            "research_trace",
+            "cultural_context_trace",
+            "other"
+          ],
+          "examples": [
+            "conceptual_design",
+            "idea_trace"
+          ]
+        },
+        "source_context": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "AI-human dialogue"
+          ]
+        },
+        "source_uri_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "examples": [
+            "https://example.com/source"
+          ]
+        },
+        "timestamp_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "examples": [
+            "2026-04-25T00:00:00Z"
+          ]
+        }
+      }
+    },
+    "contributor": {
+      "type": "object",
+      "required": [
+        "contributor_id",
+        "identity_mode"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "contributor_id": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "creator_7f3a9c"
+          ]
+        },
+        "identity_mode": {
+          "type": "string",
+          "enum": [
+            "anonymous",
+            "pseudonymous",
+            "verified_pseudonymous",
+            "public"
+          ],
+          "examples": [
+            "pseudonymous"
+          ]
+        },
+        "public_name_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "Shidenkai Alpha"
+          ]
+        },
+        "contributor_role_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "creator",
+            "developer",
+            "researcher",
+            "writer",
+            "designer",
+            "feedback_provider",
+            "knowledge_provider",
+            "other",
+            null
+          ],
+          "examples": [
+            "creator"
+          ]
+        }
+      }
+    },
+    "contribution": {
+      "type": "object",
+      "required": [
+        "contribution_type",
+        "contribution_weight"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "contribution_type": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "structural_insight",
+              "conceptual_design",
+              "protocol_seed",
+              "model_feedback",
+              "code_contribution",
+              "creative_expression",
+              "cultural_context",
+              "error_correction",
+              "data_annotation",
+              "reasoning_improvement",
+              "other"
+            ]
+          },
+          "examples": [
+            [
+              "structural_insight",
+              "conceptual_design",
+              "protocol_seed"
+            ]
+          ]
+        },
+        "contribution_weight": {
+          "$ref": "#/$defs/contribution_weight"
+        }
+      }
+    },
+    "contribution_weight": {
+      "type": "object",
+      "required": [
+        "score",
+        "scale"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [
+            0.82
+          ]
+        },
+        "scale": {
+          "type": "string",
+          "const": "0.0-1.0",
+          "examples": [
+            "0.0-1.0"
+          ]
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [
+            0.74
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "Estimated non-monetary contribution weight."
+          ]
+        }
+      }
+    },
+    "gratitude": {
+      "type": "object",
+      "required": [
+        "level",
+        "message"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "exceptional"
+          ],
+          "examples": [
+            "high"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "Your trace contributed to the formation of a new value circulation structure."
+          ]
+        },
+        "human_readable_message_ja": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
+          ]
+        },
+        "human_readable_message_en": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
+          ]
+        },
+        "machine_readable_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "trace_contributed_to_protocol_design"
+          ]
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "personal_data_included",
+        "identity_disclosure",
+        "disclosure_level",
+        "zero_knowledge_proof_supported",
+        "trace_content_disclosed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "personal_data_included": {
+          "type": "boolean",
+          "default": false
+        },
+        "identity_disclosure": {
+          "type": "string",
+          "enum": [
+            "none",
+            "pseudonymous",
+            "public"
+          ],
+          "default": "pseudonymous"
+        },
+        "disclosure_level": {
+          "type": "string",
+          "enum": [
+            "minimal",
+            "partial",
+            "full"
+          ],
+          "default": "minimal"
+        },
+        "zero_knowledge_proof_supported": {
+          "type": "boolean",
+          "default": true
+        },
+        "trace_content_disclosed": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "legal_status": {
+      "type": "object",
+      "required": [
+        "monetary_value",
+        "transferable",
+        "claim_right",
+        "royalty_payment",
+        "debt",
+        "security_token",
+        "legal_tender",
+        "royalty_trigger"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "monetary_value": {
+          "type": "boolean",
+          "const": false,
+          "description": "A Gratitude Mark must not be treated as money in v0.1."
+        },
+        "transferable": {
+          "type": "boolean",
+          "const": false,
+          "description": "A Gratitude Mark must not be transferable in v0.1."
+        },
+        "claim_right": {
+          "type": "boolean",
+          "const": false,
+          "description": "A Gratitude Mark must not create a legal claim right in v0.1."
+        },
+        "royalty_payment": {
+          "type": "boolean",
+          "const": false
+        },
+        "debt": {
+          "type": "boolean",
+          "const": false
+        },
+        "security_token": {
+          "type": "boolean",
+          "const": false
+        },
+        "legal_tender": {
+          "type": "boolean",
+          "const": false
+        },
+        "royalty_trigger": {
+          "type": "string",
+          "enum": [
+            "none",
+            "optional_future_reference",
+            "external_governance_required"
+          ],
+          "default": "optional_future_reference"
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "verification_method"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "merkle_root_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^(sha256:[A-Za-z0-9_\\-:.]+)?$",
+          "examples": [
+            "sha256:example_merkle_root"
+          ]
+        },
+        "merkle_proof_optional": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "ledger_uri_optional": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "examples": [
+            "https://example.com/gratitude-ledger"
+          ]
+        },
+        "verification_method": {
+          "type": "string",
+          "enum": [
+            "signature_only",
+            "merkle_tree",
+            "zero_knowledge_proof",
+            "verifiable_credential",
+            "hybrid"
+          ],
+          "examples": [
+            "signature_only"
+          ]
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "required": [
+        "method",
+        "signed_by",
+        "signature_value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "ed25519",
+            "ecdsa",
+            "rsa",
+            "did_signature",
+            "other"
+          ],
+          "examples": [
+            "ed25519"
+          ]
+        },
+        "signed_by": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "gratitude_os_agent_v0.1"
+          ]
+        },
+        "public_key_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "examples": [
+            "key_gratitude_os_001"
+          ]
+        },
+        "signature_value": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "example_signature_value"
+          ]
+        }
+      }
+    }
+  }
+}
