@@ -895,3 +895,27 @@ Value should return.
 ```
 
 **Gratitude OS is the first bridge from trace to return.**
+
+## License
+
+Gratitude OS v0.1 uses a dual-license structure.
+
+Documentation and specification files are licensed under **CC BY 4.0**:
+
+- `README.md`
+- `gratitude-os-v0.1.yaml`
+- `docs/`
+
+Code-like files, schemas, examples, and GitHub Actions workflows are licensed under the **MIT License**:
+
+- `schema/`
+- `examples/`
+- `.github/workflows/`
+
+Suggested attribution:
+
+```text
+Gratitude OS v0.1 by Shidenkai Alpha / Kazene
+
+Gratitude OS v0.1 is a non-monetary acknowledgment protocol.
+This license does not create any monetary right, royalty claim, legal entitlement, or payment obligation.
