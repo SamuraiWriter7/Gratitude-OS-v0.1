@@ -1,0 +1,130 @@
+name: Validate Specs
+
+on:
+  push:
+    paths:
+      - "README.md"
+      - "gratitude-os-v0.1.yaml"
+      - "schema/**"
+      - "examples/**"
+      - ".github/workflows/validate-specs.yml"
+
+  pull_request:
+    paths:
+      - "README.md"
+      - "gratitude-os-v0.1.yaml"
+      - "schema/**"
+      - "examples/**"
+      - ".github/workflows/validate-specs.yml"
+
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "jsonschema[format]" PyYAML
+
+      - name: Debug file tree
+        run: |
+          pwd
+          find . -maxdepth 4 -type f | sort
+
+      - name: Validate Gratitude OS files
+        run: |
+          python - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          import yaml
+          from jsonschema import Draft202012Validator, FormatChecker
+
+          schema_path = Path("schema/gratitude-os-v0.1.schema.json")
+          main_spec_path = Path("gratitude-os-v0.1.yaml")
+          sample_yaml_path = Path("examples/gratitude-mark.sample.yaml")
+          sample_json_path = Path("examples/gratitude-mark.sample.json")
+
+          required_files = [
+              schema_path,
+              main_spec_path,
+              sample_yaml_path,
+              sample_json_path,
+          ]
+
+          missing = [str(path) for path in required_files if not path.exists()]
+          if missing:
+              print("Missing required files:")
+              for path in missing:
+                  print(f"  - {path}")
+              sys.exit(1)
+
+          def load_yaml(path: Path):
+              with path.open("r", encoding="utf-8") as f:
+                  return yaml.safe_load(f)
+
+          def load_json(path: Path):
+              with path.open("r", encoding="utf-8") as f:
+                  return json.load(f)
+
+          print("Loading schema...")
+          schema = load_json(schema_path)
+
+          print("Checking schema validity...")
+          Draft202012Validator.check_schema(schema)
+
+          validator = Draft202012Validator(
+              schema,
+              format_checker=FormatChecker()
+          )
+
+          def validate_document(path: Path, data):
+              print(f"Validating {path}...")
+              errors = sorted(
+                  validator.iter_errors(data),
+                  key=lambda error: list(error.path)
+              )
+
+              if errors:
+                  print(f"Validation failed: {path}")
+                  for error in errors:
+                      location = "/".join(str(part) for part in error.path)
+                      location = location if location else "<root>"
+                      print(f"  - {location}: {error.message}")
+                  sys.exit(1)
+
+              print(f"OK: {path}")
+
+          print("Parsing main YAML specification...")
+          main_spec = load_yaml(main_spec_path)
+
+          if not isinstance(main_spec, dict):
+              print("Main spec must be a YAML object.")
+              sys.exit(1)
+
+          if "gratitude_os" not in main_spec:
+              print("Main spec must contain top-level key: gratitude_os")
+              sys.exit(1)
+
+          print(f"OK: {main_spec_path}")
+
+          sample_yaml = load_yaml(sample_yaml_path)
+          sample_json = load_json(sample_json_path)
+
+          validate_document(sample_yaml_path, sample_yaml)
+          validate_document(sample_json_path, sample_json)
+
+          print("All Gratitude OS validation checks passed.")
+          PY
