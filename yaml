@@ -511,13 +511,13 @@ gratitude_os:
       issuer_type: "ai_agent"
       issuer_name_optional: "Gratitude OS Agent"
 
-    trace:
-      trace_id: "trace_2026_0425_001"
-      trace_hash: "sha256:example_trace_hash"
-      trace_type: "conceptual_design"
-      source_context: "AI-human dialogue"
-      source_uri_optional: null
-      timestamp_optional: "2026-04-25T00:00:00Z"
+ trace:
+  trace_id: "trace_2026_0425_001"
+  trace_hash: "sha256:example_trace_hash"
+  trace_type: "idea_trace"
+  source_context: "AI-human dialogue"
+  source_uri_optional: null
+  timestamp_optional: "2026-04-25T00:00:00Z"
 
     contributor:
       contributor_id: "creator_7f3a9c"
@@ -525,16 +525,16 @@ gratitude_os:
       public_name_optional: "Shidenkai Alpha"
       contributor_role_optional: "creator"
 
-    contribution:
-      contribution_type:
-        - "structural_insight"
-        - "conceptual_design"
-        - "protocol_seed"
-      contribution_weight:
-        score: 0.82
-        scale: "0.0-1.0"
-        confidence: 0.74
-        note: "Estimated non-monetary contribution weight."
+   contribution:
+  contribution_type:
+    - "structural_insight"
+    - "conceptual_design"
+    - "protocol_seed"
+  contribution_weight:
+    score: 0.82
+    scale: "0.0-1.0"
+    confidence: 0.74
+    note: "Estimated non-monetary contribution weight."
 
     gratitude:
       level: "high"
