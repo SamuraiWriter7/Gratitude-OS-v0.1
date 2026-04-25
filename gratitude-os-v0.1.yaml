@@ -10,14 +10,8 @@ gratitude_os:
     ja: "AIが人間の痕跡に対して、金銭ではなく感謝の刻印を返すための非金銭的価値循環プロトコル。"
 
   purpose:
-    en: >
-      Gratitude OS defines a lightweight protocol for acknowledging human
-      contributions to AI systems through signed, non-monetary gratitude marks.
-      It acts as a bridge between Existence Proof OS and Royalty OS.
-    ja: >
-      感謝OSは、人間・創作者・開発者・知識提供者などの痕跡に対して、
-      AIが署名付きの「感謝の刻印」を返すための軽量プロトコルである。
-      存在証明OSと印税OSの中間レイヤーとして機能する。
+    en: "Gratitude OS defines a lightweight protocol for acknowledging human contributions to AI systems through signed, non-monetary gratitude marks."
+    ja: "感謝OSは、人間・創作者・開発者・知識提供者などの痕跡に対して、AIが署名付きの感謝の刻印を返すための軽量プロトコルである。"
 
   core_flow:
     - step: "trace"
@@ -71,11 +65,14 @@ gratitude_os:
     required_fields:
       - "mark_id"
       - "issued_at"
+      - "issuer"
       - "trace"
       - "contributor"
       - "contribution"
       - "gratitude"
+      - "privacy"
       - "legal_status"
+      - "verification"
       - "signature"
 
     fields:
@@ -199,13 +196,8 @@ gratitude_os:
                 - "data_annotation"
                 - "reasoning_improvement"
                 - "other"
-            example:
-              - "structural_insight"
-              - "protocol_seed"
-
           contribution_weight:
             type: "object"
-            description: "Non-monetary contribution weight used only for appreciation level estimation."
             fields:
               score:
                 type: "number"
@@ -238,20 +230,15 @@ gratitude_os:
               - "medium"
               - "high"
               - "exceptional"
-            example: "high"
-
           message:
             type: "string"
             example: "Your trace contributed to the formation of a new value circulation structure."
-
           human_readable_message_ja:
             type: "string"
             example: "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
-
           human_readable_message_en:
             type: "string"
             example: "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
-
           machine_readable_reason:
             type: "string"
             example: "trace_contributed_to_protocol_design"
@@ -360,7 +347,6 @@ gratitude_os:
               - "rsa"
               - "did_signature"
               - "other"
-            example: "ed25519"
           signed_by:
             type: "string"
             example: "gratitude_os_agent_v0.1"
@@ -428,7 +414,6 @@ gratitude_os:
         - "contributor_id"
         - "gratitude_message"
         - "signature"
-
     phase_2:
       name: "Gratitude Ledger"
       description: "Store multiple gratitude marks in a local, organizational, or public ledger."
@@ -436,7 +421,6 @@ gratitude_os:
         - "gratitude_mark_storage"
         - "issuer_registry"
         - "verification_endpoint_optional"
-
     phase_3:
       name: "Merkle Aggregation"
       description: "Aggregate gratitude marks into Merkle Trees for compact verification."
@@ -444,7 +428,6 @@ gratitude_os:
         - "mark_hash"
         - "merkle_root"
         - "merkle_proof"
-
     phase_4:
       name: "Privacy Layer"
       description: "Enable privacy-preserving proof of gratitude marks."
@@ -452,7 +435,6 @@ gratitude_os:
         - "pseudonymous_id"
         - "zero_knowledge_proof_optional"
         - "minimal_disclosure_policy"
-
     phase_5:
       name: "Royalty OS Bridge"
       description: "Optionally connect accumulated gratitude marks to Royalty OS or other value allocation systems."
@@ -466,19 +448,14 @@ gratitude_os:
     direct_payment_enabled: false
     royalty_allocation_enabled: false
     future_reference_enabled: true
-    description: >
-      Gratitude OS v0.1 does not perform payment or royalty allocation.
-      Gratitude marks may be referenced by future Royalty OS systems only under
-      separate governance, legal, and economic frameworks.
+    description: "Gratitude OS v0.1 does not perform payment or royalty allocation. Gratitude marks may be referenced by future Royalty OS systems only under separate governance, legal, and economic frameworks."
 
   existence_proof_os_relationship:
     trace_hash_required: true
     signature_recommended: true
     merkle_tree_supported: true
     zero_knowledge_proof_supported: true
-    description: >
-      Gratitude OS can use Existence Proof OS outputs such as trace hashes,
-      timestamps, signatures, Merkle roots, and zero-knowledge proofs.
+    description: "Gratitude OS can use Existence Proof OS outputs such as trace hashes, timestamps, signatures, Merkle roots, and zero-knowledge proofs."
 
   repository_structure:
     root: "gratitude-os-v0.1/"
@@ -505,26 +482,22 @@ gratitude_os:
   sample_gratitude_mark:
     mark_id: "gratitude_2026_0425_001"
     issued_at: "2026-04-25T00:00:00Z"
-
     issuer:
       issuer_id: "gratitude_os_agent_v0.1"
       issuer_type: "ai_agent"
       issuer_name_optional: "Gratitude OS Agent"
-
     trace:
       trace_id: "trace_2026_0425_001"
       trace_hash: "sha256:example_trace_hash"
-      trace_type: "idea_trace"
+      trace_type: "structural_trace"
       source_context: "AI-human dialogue"
       source_uri_optional: null
       timestamp_optional: "2026-04-25T00:00:00Z"
-
     contributor:
       contributor_id: "creator_7f3a9c"
       identity_mode: "pseudonymous"
       public_name_optional: "Shidenkai Alpha"
       contributor_role_optional: "creator"
-
     contribution:
       contribution_type:
         - "structural_insight"
@@ -535,15 +508,57 @@ gratitude_os:
         scale: "0.0-1.0"
         confidence: 0.74
         note: "Estimated non-monetary contribution weight."
-
     gratitude:
       level: "high"
       message: "Your trace contributed to the formation of a new value circulation structure."
       human_readable_message_ja: "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。"
       human_readable_message_en: "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI."
       machine_readable_reason: "trace_contributed_to_protocol_design"
-
     privacy:
       personal_data_included: false
       identity_disclosure: "pseudonymous"
-      disclosure_level
+      disclosure_level: "minimal"
+      zero_knowledge_proof_supported: true
+      trace_content_disclosed: false
+    legal_status:
+      monetary_value: false
+      transferable: false
+      claim_right: false
+      royalty_payment: false
+      debt: false
+      security_token: false
+      legal_tender: false
+      royalty_trigger: "optional_future_reference"
+    verification:
+      merkle_root_optional: null
+      merkle_proof_optional: []
+      ledger_uri_optional: null
+      verification_method: "signature_only"
+    signature:
+      method: "ed25519"
+      signed_by: "gratitude_os_agent_v0.1"
+      public_key_id: "key_gratitude_os_001"
+      signature_value: "example_signature_value"
+
+  governance:
+    recommended_policy:
+      - "Do not assign monetary value to gratitude marks in v0.1."
+      - "Do not allow transfer, sale, or speculation of gratitude marks."
+      - "Do not treat gratitude marks as legal claims or payment obligations."
+      - "Minimize personal data."
+      - "Use pseudonymous identifiers by default."
+      - "Separate Gratitude OS from Royalty OS until legal and governance layers are defined."
+
+  future_extensions:
+    - "Gratitude Ledger"
+    - "Gratitude Score"
+    - "Privacy-Preserving Gratitude Proof"
+    - "Gratitude-to-Royalty Bridge"
+    - "Gratitude Mark JSON Schema"
+    - "Gratitude Mark Verifiable Credential"
+    - "Gratitude OS x Royalty OS Integration"
+    - "Gratitude OS x Existence Proof OS Integration"
+
+  closing_statement:
+    en: "Gratitude OS is the first bridge from trace to return."
+    ja: "感謝OSは、痕跡から還元へ向かう最初の橋である。"
