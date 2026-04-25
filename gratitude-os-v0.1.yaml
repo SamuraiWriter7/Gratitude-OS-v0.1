@@ -591,6 +591,6 @@ gratitude_os:
     - "Gratitude OS x Royalty OS Integration"
     - "Gratitude OS x Existence Proof OS Integration"
 
-  closing_statement:
-    en: "Gratitude OS is the first bridge from trace to return."
-    ja: "感謝OSは、痕跡から還元へ向かう最初の橋である。"
+   closing_statement:
+     en: "Gratitude OS is the first bridge from trace to return."
+     ja: "感謝OSは、痕跡から還元へ向かう最初の橋である。"
