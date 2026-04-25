@@ -581,7 +581,7 @@ gratitude_os:
       - "Use pseudonymous identifiers by default."
       - "Separate Gratitude OS from Royalty OS until legal and governance layers are defined."
 
-  future_extensions:
+ future_extensions:
     - "Gratitude Ledger"
     - "Gratitude Score"
     - "Privacy-Preserving Gratitude Proof"
