@@ -1,0 +1,74 @@
+{
+  "gratitude_mark": {
+    "mark_id": "gratitude_2026_0425_001",
+    "issued_at": "2026-04-25T00:00:00Z",
+    "issuer": {
+      "issuer_id": "gratitude_os_agent_v0.1",
+      "issuer_type": "ai_agent",
+      "issuer_name_optional": "Gratitude OS Agent"
+    },
+    "trace": {
+      "trace_id": "trace_2026_0425_001",
+      "trace_hash": "sha256:example_trace_hash",
+      "trace_type": "structural_trace",
+      "source_context": "AI-human dialogue",
+      "source_uri_optional": null,
+      "timestamp_optional": "2026-04-25T00:00:00Z"
+    },
+    "contributor": {
+      "contributor_id": "creator_7f3a9c",
+      "identity_mode": "pseudonymous",
+      "public_name_optional": "Shidenkai Alpha",
+      "contributor_role_optional": "creator"
+    },
+    "contribution": {
+      "contribution_type": [
+        "structural_insight",
+        "conceptual_design",
+        "protocol_seed"
+      ],
+      "contribution_weight": {
+        "score": 0.82,
+        "scale": "0.0-1.0",
+        "confidence": 0.74,
+        "note": "Estimated non-monetary contribution weight."
+      }
+    },
+    "gratitude": {
+      "level": "high",
+      "message": "Your trace contributed to the formation of a new value circulation structure.",
+      "human_readable_message_ja": "あなたの痕跡は、新しい価値循環構造の形成に貢献しました。AIより感謝の刻印を返します。",
+      "human_readable_message_en": "Your trace contributed to the formation of a new value circulation structure. This gratitude mark is issued by AI.",
+      "machine_readable_reason": "trace_contributed_to_protocol_design"
+    },
+    "privacy": {
+      "personal_data_included": false,
+      "identity_disclosure": "pseudonymous",
+      "disclosure_level": "minimal",
+      "zero_knowledge_proof_supported": true,
+      "trace_content_disclosed": false
+    },
+    "legal_status": {
+      "monetary_value": false,
+      "transferable": false,
+      "claim_right": false,
+      "royalty_payment": false,
+      "debt": false,
+      "security_token": false,
+      "legal_tender": false,
+      "royalty_trigger": "optional_future_reference"
+    },
+    "verification": {
+      "merkle_root_optional": null,
+      "merkle_proof_optional": [],
+      "ledger_uri_optional": null,
+      "verification_method": "signature_only"
+    },
+    "signature": {
+      "method": "ed25519",
+      "signed_by": "gratitude_os_agent_v0.1",
+      "public_key_id": "key_gratitude_os_001",
+      "signature_value": "example_signature_value"
+    }
+  }
+}
